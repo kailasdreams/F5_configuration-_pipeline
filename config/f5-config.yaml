@@ -1,0 +1,25 @@
+# Example only: replace documentation/test IPs with addresses for your lab.
+# Objects are created in the /Common partition.
+nodes:
+  - name: app-node-01
+    address: 192.0.2.11
+  - name: app-node-02
+    address: 192.0.2.12
+
+pools:
+  - name: app-pool
+    monitor: /Common/tcp
+    load_balancing_mode: round-robin
+    members:
+      - node: app-node-01
+        port: 8080
+      - node: app-node-02
+        port: 8080
+
+virtual_servers:
+  - name: app-vip
+    destination_address: 198.51.100.20
+    destination_port: 80
+    protocol: tcp
+    pool: app-pool
+    profiles: ["/Common/tcp", "/Common/http"]

@@ -1,0 +1,1 @@
+PyYAML>=6.0,<7.0\nrequests>=2.31,<3.0\n
